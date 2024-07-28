@@ -34,7 +34,8 @@ export default class IMGBB{
      */
     async upload(file: File, expiration?: number){
         const url = this.createUrl(expiration);
-        const archive = new FormData().append('image', file);
+        const archive = new FormData();
+        archive.append('image', file)
         try {
             const { data }: { data: ImageUploadProps } = await axios.post(url, archive, {
                 headers: {

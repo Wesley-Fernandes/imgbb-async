@@ -1,0 +1,32 @@
+{
+  "name": "imgbb-async",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --declaration",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
+    "test": "vitest"
+  },
+  "keywords": [
+    "imgbb",
+    "imgbb-async",
+    "imgbb-api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Um cliente TypeScript para o serviço de upload de imagens IMGBB. Facilita o envio de arquivos de imagem para a plataforma IMGBB e o gerenciamento de URLs de imagens.",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "axios-mock-adapter": "^1.22.0",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.4"
+  },
+  "dependencies": {
+    "axios": "^1.7.2"
+  }
+}

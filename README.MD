@@ -1,3 +1,4 @@
+´´´ts
 import IMGBB from 'imgbb-async';
 
 const API_KEY = 'YOUR_API_KEY_HERE';
@@ -15,3 +16,4 @@ const uploadImage = async (file: File) => {
     console.error('Erro ao enviar o arquivo:', error);
   }
 };
+´´´

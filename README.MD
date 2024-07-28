@@ -1,4 +1,4 @@
-´´´ts
+```typescript
 import IMGBB from 'imgbb-async';
 
 const API_KEY = 'YOUR_API_KEY_HERE';

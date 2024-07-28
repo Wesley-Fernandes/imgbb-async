@@ -108,14 +108,3 @@ Contribuições são bem-vindas! Se você tiver sugestões ou encontrar problema
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
-```
-
-### Estrutura do README
-
-1. **Nome e Descrição**: O nome do pacote e uma breve descrição do que ele faz.
-2. **Instalação**: Instruções sobre como instalar o pacote usando npm ou yarn.
-3. **Uso**: Exemplos básicos de como usar a classe `IMGBB`, incluindo um exemplo de código.
-4. **Métodos da Classe IMGBB**: Descrição dos métodos principais da classe.
-5. **Tipos**: Descrição das interfaces usadas no pacote.
-6. **Contribuição**: Informações sobre como contribuir para o projeto.
-7. **Licença**: Informação sobre a licença do projeto.

@@ -1,6 +1,3 @@
-Aqui está um exemplo de `README.md` para o seu pacote npm `imgbb-async`. Esse README fornece uma visão geral do pacote, instruções de instalação e uso, e detalhes sobre as principais funcionalidades:
-
-```markdown
 # imgbb-async
 
 Um cliente TypeScript assíncrono para o serviço de upload de imagens IMGBB. Facilita o envio de arquivos de imagem para a plataforma IMGBB e a manipulação das URLs de imagens carregadas.
@@ -122,5 +119,3 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 5. **Tipos**: Descrição das interfaces usadas no pacote.
 6. **Contribuição**: Informações sobre como contribuir para o projeto.
 7. **Licença**: Informação sobre a licença do projeto.
-
-Sinta-se à vontade para ajustar o README conforme necessário para refletir com precisão as funcionalidades e a estrutura do seu pacote.

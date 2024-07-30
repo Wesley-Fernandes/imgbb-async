@@ -10,7 +10,7 @@ class IMGBB {
         this.key = key;
     }
     createUrl(expiration) {
-        return expiration ? `${this.base}?expiration=${expiration}&?key=${this.key}` : `${this.base}?key=${this.key}`;
+        return expiration ? `${this.base}?expiration=${expiration}&key=${this.key}` : `${this.base}?key=${this.key}`;
     }
     async upload(file, expiration) {
         if (!(file instanceof File)) {

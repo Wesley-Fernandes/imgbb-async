@@ -23,7 +23,7 @@ export default class IMGBB{
      * @returns {string} - The constructed URL.
      */
     private createUrl(expiration?:number): string{
-       return expiration ? `${this.base}?expiration=${expiration}&?key=${this.key}`:`${this.base}?key=${this.key}`;
+       return expiration ? `${this.base}?expiration=${expiration}&key=${this.key}`:`${this.base}?key=${this.key}`;
     }
 
     /**

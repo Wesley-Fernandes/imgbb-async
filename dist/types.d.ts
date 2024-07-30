@@ -20,10 +20,10 @@ export interface IMGBBResponseData {
     delete_url: string;
 }
 export interface SucessResponse {
-    status: number;
-    response: IMGBBResponseData;
+    status: 201;
+    responseSucess: IMGBBResponseData;
 }
 export interface ErrorResponse {
-    status: number;
-    response: string;
+    status: 500 | 401;
+    responseError: string;
 }

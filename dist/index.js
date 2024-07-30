@@ -14,7 +14,7 @@ class IMGBB {
     }
     async upload(file, expiration) {
         if (!(file instanceof File)) {
-            return { status: 401, response: 'Invalid file. Please, use file from input type file.' };
+            return { status: 401, responseError: 'Invalid file. Please, use file from input type file.' };
         }
         try {
             const url = this.createUrl(expiration);
@@ -25,11 +25,11 @@ class IMGBB {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return { status: 201, response: data };
+            return { status: 201, responseSucess: data };
         }
         catch (error) {
             console.error(error);
-            return { status: 500, response: "Failed to upload. Internal error." };
+            return { status: 500, responseError: "Failed to upload. Internal error." };
         }
     }
 }

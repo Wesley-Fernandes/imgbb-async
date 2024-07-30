@@ -35,13 +35,13 @@ const uploadImage = async (file: File) => {
     const data = await imgbb.upload(file, 600);
     switch(data.status){
       case 201:
-        console.log('Upload successful:', data.response.display_url);
+        console.log('Upload successful:', data.responseSucess.display_url);
         break;
       case: 401:
-        console.error(data.response);
+        console.error(data.responseError);
         break;
       case 500:
-        console.error(data.response);
+        console.error(data.responseError);
         break;
     }
   } catch (error) {
@@ -104,13 +104,13 @@ export interface IMGBBResponseData {
 }
 
 export interface SucessResponse {
-    status: number;
-    response: IMGBBResponseData;
+    status: 201;
+    responseSucess: IMGBBResponseData;
 }
 
 export interface ErrorResponse {
-  status: number;
-  response: string;
+  status: 500|401;
+  responseError: string;
 }
 ```
 

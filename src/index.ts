@@ -1,51 +1,55 @@
 
 import axios from "axios";
-import { ImageUploadProps } from "./types";
+import * as T from "./types";
 
 /**
- * Classe para lidar com o upload de imagens para o IMGBB.
- */
+ * Class for handling image uploads to IMGBB.
+*/
 export default class IMGBB{
-    public key: string;
+    private key: string;
     private base = "https://api.imgbb.com/1/upload";
 
     /**
-     * Construtor para a classe IMGBB.
-     * @param {string} key - A chave de API para autenticação com o serviço IMGBB.
-    */
+     * Constructor for the IMGBB class.
+     * @param {string} key - The API key for authentication with the IMGBB service.
+     */
     constructor(key: string){
         this.key = key;
     }
 
     /**
-     * Cria a URL para upload de imagem.
-     * @param {number} [expiration] - Tempo de expiração opcional em segundos.
-     * @returns {string} - A URL construída.
-    */
-    createUrl(expiration?:number){
+     * Creates the URL for image upload.
+     * @param {number} [expiration] - Optional expiration time in seconds.
+     * @returns {string} - The constructed URL.
+     */
+    private createUrl(expiration?:number): string{
        return expiration ? `${this.base}?expiration=${expiration}&?key=${this.key}`:`${this.base}?key=${this.key}`;
     }
 
     /**
-     * Faz o upload de um arquivo para o serviço IMGBB.
-     * @param {File} file - O arquivo a ser enviado.
-     * @param {number} [expiration] - Tempo de expiração opcional em segundos.
-     * @returns {Promise<ImageUploadProps | null>} - A resposta do upload ou null em caso de erro.
+     * Uploads a file to the IMGBB service.
+     * @param {File} file - The file to be uploaded.
+     * @param {number} [expiration] - Optional expiration time in seconds.
+     * @returns {Promise<T.SuccessResponse | T.ErrorResponse>} - The upload response or null in case of an error.
      */
-    async upload(file: File, expiration?: number){
-        const url = this.createUrl(expiration);
-        const archive = new FormData();
-        archive.append('image', file)
+    async upload(file: File, expiration?: number): Promise<T.SucessResponse | T.ErrorResponse>{
+        if(!(file instanceof File)){
+            return {status: 401, response: 'Invalid file. Please, use file from input type file.' };
+        }
         try {
-            const { data }: { data: ImageUploadProps } = await axios.post(url, archive, {
+            const url = this.createUrl(expiration);
+            const archive = new FormData();
+            archive.append('image', file)
+
+            const { data }: { data: T.IMGBBResponseData } = await axios.post(url, archive, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return data;
+            return { status: 201, response:data };
         } catch (error) {
             console.error(error);
-            return error;
+            return { status: 500, response: "Failed to upload. Internal error." };
         }
     }
 }

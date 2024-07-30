@@ -1,83 +1,87 @@
 # imgbb-async
 
-Um cliente TypeScript assíncrono para o serviço de upload de imagens IMGBB. Facilita o envio de arquivos de imagem para a plataforma IMGBB e a manipulação das URLs de imagens carregadas.
+An asynchronous TypeScript client for the IMGBB image upload service. It facilitates sending image files to the IMGBB platform and handling the URLs of uploaded images.
 
-## Instalação
+## Installation
 
-Para instalar o `imgbb-async`, use o npm ou yarn:
+To install `imgbb-async`, use npm or yarn:
 
 ```bash
 npm install imgbb-async
 ```
 
-ou
+or
 
 ```bash
 yarn add imgbb-async
 ```
 
-## Uso
+## Usage
 
-### Exemplo Básico
+### Basic Example
 
-Aqui está um exemplo básico de como usar a classe `IMGBB` para fazer o upload de uma imagem:
+Here is a basic example of how to use the `IMGBB` class to upload an image:
 
 ```typescript
 import IMGBB from 'imgbb-async';
 import { ImageUploadProps } from 'imgbb-async';
 
-// Substitua pela sua chave de API real
+// Replace with your actual API key
 const API_KEY = 'YOUR_API_KEY_HERE';
 
 const imgbb = new IMGBB(API_KEY);
 
 const uploadImage = async (file: File) => {
   try {
-    const response: ImageUploadProps | null = await imgbb.upload(file, 600);
-    if (response) {
-      console.log('Upload successful:', response);
-      // Faça algo com a resposta, por exemplo, exibir a URL da imagem
-      console.log(`Imagem enviada com sucesso! URL: ${response.data.display_url}`);
-    } else {
-      console.error('Erro no upload');
+    const data = await imgbb.upload(file, 600);
+    switch(data.status){
+      case 201:
+        console.log('Upload successful:', data.response.display_url);
+        break;
+      case: 401:
+        console.error(data.response);
+        break;
+      case 500:
+        console.error(data.response);
+        break;
     }
   } catch (error) {
-    console.error('Erro ao enviar o arquivo:', error);
+    console.error('Error uploading the file:', error);
   }
 };
 ```
 
-### Métodos da Classe IMGBB
+### IMGBB Class Methods
 
 #### `constructor(key: string)`
 
-Cria uma nova instância do cliente IMGBB com a chave de API fornecida.
+Creates a new instance of the IMGBB client with the provided API key.
 
-- `key`: A chave de API para autenticação com o serviço IMGBB.
+- `key`: The API key for authentication with the IMGBB service.
 
 #### `createUrl(expiration?: number): string`
 
-Cria a URL para upload de imagem.
+Creates the URL for image upload.
 
-- `expiration` (opcional): Tempo de expiração em segundos.
+- `expiration` (optional): Expiration time in seconds.
 
 #### `upload(file: File, expiration?: number): Promise<ImageUploadProps | null>`
 
-Faz o upload de um arquivo para o serviço IMGBB.
+Uploads a file to the IMGBB service.
 
-- `file`: O arquivo a ser enviado.
-- `expiration` (opcional): Tempo de expiração em segundos.
+- `file`: The file to be uploaded.
+- `expiration` (optional): Expiration time in seconds.
 
-Retorna uma `Promise` com as propriedades da imagem carregada ou `null` em caso de erro.
+Returns a `Promise` with the properties of the uploaded image or `null` in case of an error.
 
-## Tipos
+## Types
 
 ### `ImageUploadProps`
 
-Interface que define as propriedades da imagem retornadas após o upload.
+Interface that defines the properties of the image returned after upload.
 
 ```typescript
-export interface ImageDetailsProps {
+export interface IMGBBDetails {
     filename: string;
     name: string;
     mime: string;
@@ -85,7 +89,7 @@ export interface ImageDetailsProps {
     url: string;
 }
 
-export interface ImageUploadProps {
+export interface IMGBBResponseData {
     id: string;
     title: string;
     url_viewer: string;
@@ -99,12 +103,22 @@ export interface ImageUploadProps {
     medium: ImageDetailsProps;
     delete_url: string;
 }
+
+export interface SucessResponse {
+    status: number;
+    response: IMGBBResponseData;
+}
+
+export interface ErrorResponse {
+  status: number;
+  response: string;
+}
 ```
 
-## Contribuição
+## Contribution
 
-Contribuições são bem-vindas! Se você tiver sugestões ou encontrar problemas, sinta-se à vontade para abrir uma [issue](https://github.com/seu-usuario/imgbb-async/issues) ou enviar um pull request.
+Contributions are welcome! If you have suggestions or encounter issues, feel free to open an [issue](https://github.com/your-username/imgbb-async/issues) or submit a pull request.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).

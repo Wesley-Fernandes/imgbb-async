@@ -1,6 +1,6 @@
 {
   "name": "imgbb-async",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,9 +13,9 @@
     "imgbb-async",
     "imgbb-api"
   ],
-  "author": "",
+  "author": "Wesley Fernandes",
   "license": "ISC",
-  "description": "Um cliente TypeScript para o serviço de upload de imagens IMGBB. Facilita o envio de arquivos de imagem para a plataforma IMGBB e o gerenciamento de URLs de imagens.",
+  "description": "A TypeScript client for the IMGBB image upload service. It facilitates sending image files to the IMGBB platform and managing image URLs.",
   "devDependencies": {
     "@types/node": "^22.0.0",
     "axios-mock-adapter": "^1.22.0",

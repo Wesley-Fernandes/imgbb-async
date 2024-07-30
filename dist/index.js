@@ -20,12 +20,12 @@ class IMGBB {
             const url = this.createUrl(expiration);
             const archive = new FormData();
             archive.append('image', file);
-            const { data } = await axios_1.default.post(url, archive, {
+            const response = await axios_1.default.post(url, archive, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return { status: 201, responseSucess: data };
+            return { status: 201, responseSucess: response.data.data };
         }
         catch (error) {
             console.error(error);

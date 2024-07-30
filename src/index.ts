@@ -41,12 +41,13 @@ export default class IMGBB{
             const archive = new FormData();
             archive.append('image', file)
 
-            const { data }: { data: T.IMGBBResponseData } = await axios.post(url, archive, {
+            const { data } = await axios.post(url, archive, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return { status: 201, responseSucess:data };
+
+            return { status: 201, responseSucess:data.data as T.IMGBBResponseData };
         } catch (error) {
             console.error(error);
             return { status: 500, responseError: "Failed to upload. Internal error." };

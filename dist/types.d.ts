@@ -1,11 +1,11 @@
-export interface ImageDetailsProps {
+export interface IMGBBDetails {
     filename: string;
     name: string;
     mime: string;
     extension: string;
     url: string;
 }
-export interface ImageUploadProps {
+export interface IMGBBResponseData {
     id: string;
     title: string;
     url_viewer: string;
@@ -14,11 +14,16 @@ export interface ImageUploadProps {
     size: number;
     time: string;
     expiration: string;
-    image: ImageDetailsProps;
-    thumb: ImageDetailsProps;
-    medium: ImageDetailsProps;
+    image: IMGBBDetails;
+    thumb: IMGBBDetails;
+    medium: IMGBBDetails;
     delete_url: string;
 }
-export interface ImgbbResponse {
-    data: ImageDetailsProps;
+export interface SucessResponse {
+    status: number;
+    response: IMGBBResponseData;
+}
+export interface ErrorResponse {
+    status: number;
+    response: string;
 }

@@ -13,20 +13,23 @@ class IMGBB {
         return expiration ? `${this.base}?expiration=${expiration}&?key=${this.key}` : `${this.base}?key=${this.key}`;
     }
     async upload(file, expiration) {
-        const url = this.createUrl(expiration);
-        const archive = new FormData();
-        archive.append('image', file);
+        if (!(file instanceof File)) {
+            return { status: 401, response: 'Invalid file. Please, use file from input type file.' };
+        }
         try {
+            const url = this.createUrl(expiration);
+            const archive = new FormData();
+            archive.append('image', file);
             const { data } = await axios_1.default.post(url, archive, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return data;
+            return { status: 201, response: data };
         }
         catch (error) {
             console.error(error);
-            return error;
+            return { status: 500, response: "Failed to upload. Internal error." };
         }
     }
 }

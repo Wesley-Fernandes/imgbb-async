@@ -1,7 +1,8 @@
+import * as T from "./types";
 export default class IMGBB {
-    key: string;
+    private key;
     private base;
     constructor(key: string);
-    createUrl(expiration?: number): string;
-    upload(file: File, expiration?: number): Promise<unknown>;
+    private createUrl;
+    upload(file: File, expiration?: number): Promise<T.SucessResponse | T.ErrorResponse>;
 }

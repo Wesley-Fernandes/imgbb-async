@@ -24,7 +24,6 @@ Here is a basic example of how to use the `IMGBB` class to upload an image:
 
 ```typescript
 import IMGBB from 'imgbb-async';
-import { ImageUploadProps } from 'imgbb-async';
 
 // Replace with your actual API key
 const API_KEY = 'YOUR_API_KEY_HERE';

@@ -34,7 +34,7 @@ export default class IMGBB{
      */
     async upload(file: File, expiration?: number): Promise<T.SucessResponse | T.ErrorResponse>{
         if(!(file instanceof File)){
-            return {status: 401, responseError: 'Invalid file. Please, use file from input type file.' };
+            return {sucess: false, responseError: 'Invalid file. Please, use file from input type file.' };
         }
         try {
             const url = this.createUrl(expiration);
@@ -47,10 +47,10 @@ export default class IMGBB{
                 },
             });
 
-            return { status: 201, responseSucess: response.data.data };
+            return { sucess: true, responseSucess: response.data.data };
         } catch (error) {
             console.error(error);
-            return { status: 500, responseError: "Failed to upload. Internal error." };
+            return { sucess: false, responseError: "Failed to upload. Internal error." };
         }
     }
 }

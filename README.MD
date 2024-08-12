@@ -33,14 +33,11 @@ const imgbb = new IMGBB(API_KEY);
 const uploadImage = async (file: File) => {
   try {
     const data = await imgbb.upload(file, 600);
-    switch(data.status){
-      case 201:
+    switch(data.sucess){
+      case true:
         console.log('Upload successful:', data.responseSucess.display_url);
         break;
-      case: 401:
-        console.error(data.responseError);
-        break;
-      case 500:
+      case false:
         console.error(data.responseError);
         break;
     }
@@ -80,7 +77,7 @@ Returns a `Promise` with the properties of the uploaded image or `null` in case 
 Interface that defines the properties of the image returned after upload.
 
 ```typescript
-export interface IMGBBDetails {
+interface IMGBBDetails {
     filename: string;
     name: string;
     mime: string;
@@ -88,7 +85,7 @@ export interface IMGBBDetails {
     url: string;
 }
 
-export interface IMGBBResponseData {
+interface IMGBBResponseData {
     id: string;
     title: string;
     url_viewer: string;
@@ -103,13 +100,13 @@ export interface IMGBBResponseData {
     delete_url: string;
 }
 
-export interface SucessResponse {
-    status: 201;
+interface SucessResponse {
+    status: true;
     responseSucess: IMGBBResponseData;
 }
 
-export interface ErrorResponse {
-  status: 500|401;
+interface ErrorResponse {
+  status: false;
   responseError: string;
 }
 ```

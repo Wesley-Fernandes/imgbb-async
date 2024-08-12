@@ -23,11 +23,11 @@ export interface IMGBBResponseData {
 
 
 export interface SucessResponse {
-    status: 201;
+    sucess: true;
     responseSucess: IMGBBResponseData;
 }
 
 export interface ErrorResponse {
-  status: 500|401;
+  sucess: false;
   responseError: string;
 }
